@@ -297,7 +297,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		return new Revision( [
 			'comment' => CommentStore::getStore()->getComment( 'rc_comment', $result )->text,
 			'deleted' => $result->rc_deleted,
-			'user_text' => $result->rc_user_text,
+			'user_text' => $result->user_real_name,
 			'user' => $result->rc_user,
 			'actor' => $result->rc_actor,
 		], 0, $title );
@@ -486,7 +486,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 	}
 
 	protected function feedItemAuthor( $row ) {
-		return isset( $row->rc_user_text ) ? $row->rc_user_text : '';
+		return isset( $row->user_real_name ) ? $row->user_real_name : '';
 	}
 
 	protected function feedItemDesc( $row ) {

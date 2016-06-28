@@ -180,7 +180,7 @@ class DatabaseLogEntry extends LogEntryBase {
 			'log_id', 'log_type', 'log_action', 'log_timestamp',
 			'log_namespace', 'log_title', // unused log_page
 			'log_params', 'log_deleted',
-			'user_id', 'user_name', 'user_editcount',
+			'user_id', 'user_name', 'user_editcount', 'user_real_name',
 		] + $commentQuery['fields'] + $actorQuery['fields'];
 
 		$joins = [
@@ -332,7 +332,7 @@ class DatabaseLogEntry extends LogEntryBase {
 				}
 			} else {
 				// IP users
-				$userText = $this->row->log_user_text;
+				$userText = $this->row->user_real_name;
 				$this->performer = User::newFromName( $userText, false );
 			}
 		}

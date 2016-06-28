@@ -996,7 +996,7 @@ abstract class ContentHandler {
 		$revQuery = Revision::getQueryInfo();
 		$res = $dbr->select(
 			$revQuery['tables'],
-			[ 'rev_user_text' => $revQuery['fields']['rev_user_text'] ],
+			[ 'rev_user_text' => $revQuery['fields']['rev_user'] ],
 			[
 				'rev_page' => $title->getArticleID(),
 				$dbr->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0'
@@ -1015,10 +1015,10 @@ abstract class ContentHandler {
 		$row = $dbr->fetchObject( $res );
 
 		if ( $row ) { // $row is false if the only contributor is hidden
-			$onlyAuthor = $row->rev_user_text;
+			$onlyAuthor = $row->rev_user;
 			// Try to find a second contributor
 			foreach ( $res as $row ) {
-				if ( $row->rev_user_text != $onlyAuthor ) { // T24999
+				if ( $row->rev_user != $onlyAuthor ) { // T24999
 					$onlyAuthor = false;
 					break;
 				}
