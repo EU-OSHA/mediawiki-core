@@ -903,7 +903,9 @@ class Linker {
 			}
 			$classes .= ' mw-anonuserlink'; // Separate link class for anons (T45179)
 		} else {
-			$page = Title::makeTitle( NS_USER, $userName );
+			$user = User::newFromId( $userId );
+			$userRealName = $user->getRealName();
+			$page = Title::makeTitle( NS_USER, $userId );
 		}
 
 		// Wrap the output with <bdi> tags for directionality isolation
