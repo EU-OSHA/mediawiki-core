@@ -902,6 +902,7 @@ class Linker {
 				$altUserName = IP::prettifyIP( $userName );
 			}
 			$classes .= ' mw-anonuserlink'; // Separate link class for anons (T45179)
+            $userRealName = $userName;
 		} else {
 			$user = User::newFromId( $userId );
 			$userRealName = $user->getRealName();
@@ -910,7 +911,7 @@ class Linker {
 
 		// Wrap the output with <bdi> tags for directionality isolation
 		$linkText =
-			'<bdi>' . htmlspecialchars( $altUserName !== false ? $altUserName : $userName ) . '</bdi>';
+			'<bdi>' . htmlspecialchars( $altUserName !== false ? $altUserName : $userRealName ) . '</bdi>';
 
 		return $page
 			? self::link( $page, $linkText, [ 'class' => $classes ] )
