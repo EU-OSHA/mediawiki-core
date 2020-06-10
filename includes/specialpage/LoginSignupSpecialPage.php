@@ -1031,9 +1031,9 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		} else {
 			$fieldDefinitions = [
 				'username' => [
-					'label-raw' => $this->msg( 'userlogin-yourname' )->escaped() . $secureLoginLink,
+					'label-raw' => $this->msg( 'createacct-email-ph' )->escaped(),
 					'id' => 'wpName1',
-					'placeholder-message' => 'userlogin-yourname-ph',
+					'placeholder-message' => 'createacct-email-ph',
 				],
 				'password' => [
 					'id' => 'wpPassword1',
